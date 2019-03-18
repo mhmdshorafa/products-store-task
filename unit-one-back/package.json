@@ -1,0 +1,25 @@
+{
+  "name": "unit-one-back",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev:db:create": "psql -c 'CREATE DATABASE products;' -U postgres -h localhost",
+    "dev:db:drop": "psql -c 'DROP DATABASE IF EXISTS products;' -U postgres -h localhost",
+    "dev:pg:migrate": " cd pg && NODE_ENV=development && knex -- migrate:latest --knexfile ./pg/knexfile.js",
+    "dev:pg:seed": "cd pg && NODE_ENV=development && knex -- seed:run --knexfile ./pg/knexfile.js",
+    "dev:db:prepare": "npm run dev:db:drop && npm run dev:db:create && npm run dev:pg:migrate && npm run dev:pg:seed"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^7.0.0",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "knex": "^0.16.3",
+    "morgan": "~1.9.0",
+    "pg": "^7.9.0",
+    "pug": "2.0.0-beta11"
+  }
+}
